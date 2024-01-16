@@ -8,6 +8,7 @@
     <title>vue</title>
 </head>
 <body>
+<div class="nav-bar"></div>
     <div id="app">
         <div class="product">
             <div class="product-image">
@@ -20,6 +21,7 @@
                 <span v-if="onSale">On Sale!</span>
                 <p v-if="inventory > 10">In stock</p>
                 <p v-else>Out of stock</p>
+                <p>{{ sale }}</p>
                 <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
                 <ul>
                     <li v-for="detail in details">{{ detail }}</li>
@@ -27,13 +29,18 @@
                 <ul>
                     <li v-for="size in sizes">{{ size }}</li>
                   </ul>
-                <div v-for="variant in variants" :key="variant.variantId">
-                    <p>{{ variant.variantColor }}</p>
-                </div>                 
+
+                <div class="color-box"
+                     v-for="variant in variants"
+                     :key="variant.variantId"
+                     :style="{ backgroundColor:variant.variantColor }"
+                     @mouseover="updateProduct(variant.variantImage)"
+                     >
+                </div>                
 
                 <button v-on:click="addToCart">Add to cart</button>
                 <button @click="removeFromCart">Remove from cart</button>
-
+             
                 <div class="cart">
                     <p>Cart({{ cart }})</p>
                   </div>
@@ -43,3 +50,4 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+

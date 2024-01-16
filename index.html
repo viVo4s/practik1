@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/main.js"></script>
     <script src="js/vue.js"></script>
-    <link rel="stylesheet" href="css/">
+    <link rel="stylesheet" href="css/main.css">
     <title>vue</title>
 </head>
 <body>
     <div id="app">
         <div class="product">
             <div class="product-image">
-                <img alt="#" src=""/>
+                <img :src="image" :alt="altText"/>
             </div>
             <div class="product-info">
                 <h1>{{ product }}</h1>
                 <p>{{ description }}</p>
+                <p v-if="inventory > 10">In stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+                <p v-else>Out of stock</p>
             </div>
         </div>
-    </div>        
+    </div>
+    <script src="js/main.js"></script>
 </body>
 </html>

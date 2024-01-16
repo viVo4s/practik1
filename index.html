@@ -19,6 +19,8 @@
                 <a :href="link" target="_blank">More products like this</a>
                 <span v-if="onSale">On Sale!</span>
                 <p v-if="inventory > 10">In stock</p>
+                <p v-else>Out of stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
                 <ul>
                     <li v-for="detail in details">{{ detail }}</li>
                 </ul>
@@ -27,9 +29,14 @@
                   </ul>
                 <div v-for="variant in variants" :key="variant.variantId">
                     <p>{{ variant.variantColor }}</p>
-                </div>                    
-                <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
-                <p v-else>Out of stock</p>
+                </div>                 
+
+                <button v-on:click="addToCart">Add to cart</button>
+                <button @click="removeFromCart">Remove from cart</button>
+
+                <div class="cart">
+                    <p>Cart({{ cart }})</p>
+                  </div>
             </div>
         </div>
     </div>
